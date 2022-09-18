@@ -36,12 +36,8 @@ public class JieRpcServer implements RpcServer {
     public JieRpcServer(ServerConfig serverConfig) {
         this.serverConfig = serverConfig;
         this.remoteServer = new NettyRemoteServer(serverConfig);
-        invokeRequestHandler = new ServerInvokeRequestHandler();
-    }
-
-    @Override
-    public void init() {
         this.remoteServer.init();
+        this.invokeRequestHandler = new ServerInvokeRequestHandler();
         this.remoteServer.registerMsgTypeAndHandler(JieRpcConstant.INVOKE_REQUEST_MSG_TYPE, InvokeRequest.class, invokeRequestHandler);
     }
 

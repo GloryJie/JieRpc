@@ -12,9 +12,10 @@ import java.util.List;
 @Getter
 @Setter
 public class ClusterInvokeConfig {
-    private int connectTimeout = 1000;
-    private int invokeTimeout = 10000;
-    private boolean lazyConnect = false;
+
+    private String serviceName;
+
+    private InvokeConfig invokeConfig;
 
     private List<ServerNodeInvokeConfig> nodeInvokeConfigs;
 

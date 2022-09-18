@@ -1,5 +1,7 @@
 package top.glroyjie.rpc.util;
 
+import top.glroyjie.rpc.invoke.Invocation;
+
 import java.lang.reflect.Method;
 
 /**
@@ -20,5 +22,9 @@ public class RpcHelperUtil {
         }
         builder.append(")");
         return builder.toString();
+    }
+
+    public static String getInvokeClusterKey(Invocation invocation){
+        return invocation.getServiceName() + "#" + invocation.getInterfaceName();
     }
 }

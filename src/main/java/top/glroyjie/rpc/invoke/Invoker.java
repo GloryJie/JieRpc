@@ -7,10 +7,6 @@ package top.glroyjie.rpc.invoke;
  */
 public interface Invoker {
 
-    Class<?> getInterface();
-
-    String getInterfaceName();
-
     RpcResult invoke(Invocation invocation);
 
 }

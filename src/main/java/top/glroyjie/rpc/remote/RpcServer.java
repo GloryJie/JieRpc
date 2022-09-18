@@ -6,8 +6,6 @@ package top.glroyjie.rpc.remote;
  */
 public interface RpcServer {
 
-    void init();
-
     void start();
 
 

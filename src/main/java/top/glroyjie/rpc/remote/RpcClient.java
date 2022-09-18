@@ -1,8 +1,9 @@
 package top.glroyjie.rpc.remote;
 
 import top.glroyjie.rpc.config.ClusterInvokeConfig;
-import top.glroyjie.rpc.invoke.Invocation;
-import top.glroyjie.rpc.invoke.RpcResult;
+import top.glroyjie.rpc.config.ServerNodeInvokeConfig;
+import top.glroyjie.rpc.invoke.client.ClientNodeInvoker;
+import top.glroyjie.rpc.loadbalance.ClientLoadBalance;
 
 /**
  * @author jie-r
@@ -10,9 +11,15 @@ import top.glroyjie.rpc.invoke.RpcResult;
  */
 public interface RpcClient {
 
-    void init();
-
     void start();
+
+    /**
+     * register server service
+     * @param serviceName
+     * @param invokeConfig service invoke config
+     */
+    void registerServerService(String serviceName, ClusterInvokeConfig invokeConfig);
+
 
     /**
      * register interface
@@ -20,11 +27,9 @@ public interface RpcClient {
      * @param interfaceClass
      * @return interface proxy object
      */
-    <T> T generateInterfaceRef(String serviceName, Class<T> interfaceClass, ClusterInvokeConfig invokeConfig);
+    <T> T generateInterfaceRef(String serviceName, Class<T> interfaceClass);
 
+    ClientNodeInvoker createNodeInvoker(ServerNodeInvokeConfig invokeConfig);
 
-    void rmServerConfig(String serviceName, String interfaceName, String addr);
-
-
-    RpcResult invoke(Invocation invocation);
+    ClientLoadBalance createLoadBalance(String loadBalanceKey);
 }

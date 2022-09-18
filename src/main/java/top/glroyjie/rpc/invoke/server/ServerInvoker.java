@@ -46,12 +46,11 @@ public class ServerInvoker<T> implements Invoker {
         }
     }
 
-    @Override
+
     public Class<?> getInterface() {
         return interfaceClass;
     }
 
-    @Override
     public String getInterfaceName() {
         return interfaceClass.getName();
     }

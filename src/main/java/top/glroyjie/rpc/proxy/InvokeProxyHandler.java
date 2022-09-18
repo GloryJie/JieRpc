@@ -3,7 +3,7 @@ package top.glroyjie.rpc.proxy;
 import top.glroyjie.rpc.exception.RpcException;
 import top.glroyjie.rpc.invoke.Invocation;
 import top.glroyjie.rpc.invoke.RpcResult;
-import top.glroyjie.rpc.remote.RpcClient;
+import top.glroyjie.rpc.invoke.client.ClusterInvoker;
 import top.glroyjie.rpc.util.RpcHelperUtil;
 
 import java.lang.reflect.InvocationHandler;
@@ -18,11 +18,11 @@ public class InvokeProxyHandler implements InvocationHandler {
 
     private final String serviceName;
 
-    private final RpcClient rpcClient;
+    private ClusterInvoker clusterInvoker;
 
-    public InvokeProxyHandler(String serviceName, RpcClient rpcClient) {
+    public InvokeProxyHandler(String serviceName, ClusterInvoker clusterInvoker) {
         this.serviceName = serviceName;
-        this.rpcClient = rpcClient;
+        this.clusterInvoker = clusterInvoker;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class InvokeProxyHandler implements InvocationHandler {
         invocation.setInterfaceName(method.getDeclaringClass().getName());
         invocation.setMethodKey(RpcHelperUtil.getMethodKey(method));
 
-        RpcResult rpcResult = rpcClient.invoke(invocation);
+        RpcResult rpcResult = clusterInvoker.invoke(invocation);
         if (rpcResult.getException() != null) {
             if (rpcResult.getException() instanceof RpcException){
                 throw rpcResult.getException();

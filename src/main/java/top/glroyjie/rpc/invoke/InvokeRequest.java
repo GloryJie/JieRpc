@@ -26,13 +26,13 @@ public class InvokeRequest implements Serializable {
     private String methodKey;
 
     /**
-     * 参数列表, key-> paramType, value -> param
+     * key-> paramType, value -> param
      */
     private List<ParamPair> paramList;
 
     /**
-     * 传递的线程上下文信息
+     * this attribute will transmit to server
      */
-    private Map<String, String> context;
+    private Map<String,String> transmitAttribute;
 
 }

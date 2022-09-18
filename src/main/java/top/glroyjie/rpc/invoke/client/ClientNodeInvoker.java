@@ -1,5 +1,6 @@
 package top.glroyjie.rpc.invoke.client;
 
+import top.glroyjie.rpc.config.ServerNodeInvokeConfig;
 import top.glroyjie.rpc.invoke.Invoker;
 
 /**
@@ -9,6 +10,10 @@ import top.glroyjie.rpc.invoke.Invoker;
  */
 public interface ClientNodeInvoker extends Invoker {
 
+    boolean isAvailable();
 
+    ServerNodeInvokeConfig getInvokeConfig();
+
+    int getWeight();
 
 }
