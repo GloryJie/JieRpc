@@ -2,7 +2,7 @@ package top.glroyjie.rpc.remote.server;
 
 import top.gloryjie.remote.endpoint.RemoteServer;
 import top.gloryjie.remote.endpoint.server.NettyRemoteServer;
-import top.gloryjie.remote.endpoint.server.ServerConfig;
+import top.gloryjie.remote.endpoint.server.RemoteServerConfig;
 import top.gloryjie.remote.protocol.msg.RemoteMsg;
 import top.gloryjie.remote.protocol.msg.RemoteMsgContext;
 import top.gloryjie.remote.protocol.msg.RemoteMsgHandler;
@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class JieRpcServer implements RpcServer {
 
-    private final ServerConfig serverConfig;
+    private final RemoteServerConfig serverConfig;
 
     private final RemoteServer remoteServer;
 
@@ -33,7 +33,7 @@ public class JieRpcServer implements RpcServer {
     private final Map<String, ServerInvoker<?>> serverInvokerMap = new ConcurrentHashMap<>();
 
 
-    public JieRpcServer(ServerConfig serverConfig) {
+    public JieRpcServer(RemoteServerConfig serverConfig) {
         this.serverConfig = serverConfig;
         this.remoteServer = new NettyRemoteServer(serverConfig);
         this.remoteServer.init();

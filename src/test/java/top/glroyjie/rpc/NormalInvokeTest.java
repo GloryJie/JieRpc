@@ -1,7 +1,7 @@
 package top.glroyjie.rpc;
 
 import org.junit.jupiter.api.Test;
-import top.gloryjie.remote.endpoint.server.ServerConfig;
+import top.gloryjie.remote.endpoint.server.RemoteServerConfig;
 import top.glroyjie.rpc.config.ClusterInvokeConfig;
 import top.glroyjie.rpc.config.InvokeConfig;
 import top.glroyjie.rpc.config.RpcClientConfig;
@@ -21,7 +21,7 @@ public class NormalInvokeTest {
 
     @Test
     public void serverTest() throws Exception{
-        ServerConfig serverConfig = new ServerConfig("127.0.0.1", 8080);
+        RemoteServerConfig serverConfig = new RemoteServerConfig("127.0.0.1", 8080);
         serverConfig.setIoThreads(10);
         JieRpcServer rpcServer = new JieRpcServer(serverConfig);
         rpcServer.registerInvoker(HelloService.class, new HelloServiceImpl());
@@ -32,7 +32,7 @@ public class NormalInvokeTest {
 
     @Test
     public void serverBTest() throws Exception{
-        ServerConfig serverConfig = new ServerConfig("127.0.0.1", 8081);
+        RemoteServerConfig serverConfig = new RemoteServerConfig("127.0.0.1", 8081);
         serverConfig.setIoThreads(10);
         JieRpcServer rpcServer = new JieRpcServer(serverConfig);
         rpcServer.registerInvoker(HelloService.class, new HelloServiceImpl());

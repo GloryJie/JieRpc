@@ -51,7 +51,6 @@ public class JieRpcClient implements RpcClient {
         RemoteClientConfig clientConfig = new RemoteClientConfig();
         clientConfig.setConnectTimeout(rpcClientConfig.getConnectTimeout());
         clientConfig.setIoThreads(rpcClientConfig.getIoThreads());
-        clientConfig.setQueueSize(rpcClientConfig.getQueueSize());
         this.remoteClient = new NettyRemoteClient(clientConfig);
         init();
     }
@@ -133,7 +132,7 @@ public class JieRpcClient implements RpcClient {
 
         public JieClientNodeInvoker(ServerNodeInvokeConfig invokeConfig) {
             this.invokeConfig = invokeConfig;
-            this.connection = remoteClient.connect(invokeConfig.getServerIp() + ":" + invokeConfig.getPort(), 0);
+            this.connection = remoteClient.connect(invokeConfig.getServerIp() + ":" + invokeConfig.getPort());
         }
 
         @Override

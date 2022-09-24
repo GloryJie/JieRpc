@@ -23,8 +23,4 @@ public class RpcHelperUtil {
         builder.append(")");
         return builder.toString();
     }
-
-    public static String getInvokeClusterKey(Invocation invocation){
-        return invocation.getServiceName() + "#" + invocation.getInterfaceName();
-    }
 }
